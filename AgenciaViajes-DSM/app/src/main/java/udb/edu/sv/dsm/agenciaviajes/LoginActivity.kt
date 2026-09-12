@@ -8,7 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import android.content.Intent
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
-import com.agenciaviajes.databinding.ActivityLoginBinding
+import com.udb.edu.sv.agenciaviajes.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
 

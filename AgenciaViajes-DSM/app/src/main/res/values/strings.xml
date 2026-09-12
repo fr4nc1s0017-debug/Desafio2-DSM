@@ -1,4 +1,6 @@
 <resources>
+
+    <!-- Login -->
     <string name="app_name">AgenciaViajes</string>
     <string name="login_title">Bienvenido de nuevo</string>
     <string name="hint_email">Correo electrónico</string>
@@ -6,6 +8,18 @@
     <string name="btn_login">Ingresar</string>
     <string name="link_register">¿No tienes cuenta? Regístrate aquí</string>
 
+
+    <!-- Registro -->
+    <string name="register_title">Crear cuenta de agente</string>
+    <string name="hint_confirm_password">Confirmar contraseña</string>
+    <string name="btn_register">Registrarme</string>
+    <string name="link_back_login">Ya tengo cuenta, ingresar</string>
+    <string name="error_password_match">Las contraseñas no coinciden</string>
+
+    <!-- xd -->
+
+
+    <!--  -->
     <string name="error_empty_fields">
     Completa todos los campos antes de guardar
 </string>
