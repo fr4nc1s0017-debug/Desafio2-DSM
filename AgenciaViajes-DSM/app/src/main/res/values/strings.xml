@@ -9,6 +9,7 @@
     <string name="link_register">¿No tienes cuenta? Regístrate aquí</string>
 
     <!-- Registro -->
+    <string name="btn_create_account">Crear cuenta</string>
     <string name="register_title">Crear cuenta de agente</string>
     <string name="hint_confirm_password">Confirmar contraseña</string>
     <string name="btn_register">Registrarme</string>
