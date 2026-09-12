@@ -8,89 +8,125 @@ import androidx.core.view.WindowInsetsCompat
 import android.content.Intent
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
-import com.udb.edu.sv.agenciaviajes.databinding.ActivityLoginBinding
+import udb.edu.sv.dsm.agenciaviajes.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLoginBinding
-    private lateinit var auth: FirebaseAuth
+    private lateinit var binding:
+            ActivityLoginBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private lateinit var auth:
+            FirebaseAuth
 
-        binding = ActivityLoginBinding.inflate(layoutInflater)
+    override fun onCreate(
+        savedInstanceState: Bundle?
+    ) {
+
+        super.onCreate(
+            savedInstanceState
+        )
+
+        binding =
+            ActivityLoginBinding.inflate(
+                layoutInflater
+            )
+
         setContentView(binding.root)
 
-        auth = FirebaseAuth.getInstance()
-
-        binding.btnLogin.setOnClickListener {
-            intentarLogin()
-        }
-
-        binding.tvGoRegister.setOnClickListener {
-            startActivity(
-                Intent(this, RegisterActivity::class.java)
-            )
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
+        auth =
+            FirebaseAuth.getInstance()
 
         if (auth.currentUser != null) {
-            irAlCatalogo()
-        }
-    }
 
-    private fun intentarLogin() {
-
-        val email = binding.etEmail.text.toString().trim()
-        val password = binding.etPassword.text.toString().trim()
-
-        if (email.isEmpty() || password.isEmpty()) {
-            mostrarError(
-                getString(R.string.error_empty_fields)
-            )
-            return
+            abrirMain()
         }
 
-        mostrarCargando(true)
+        binding.btnLogin
+            .setOnClickListener {
 
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
+                iniciarSesion()
+            }
 
-                mostrarCargando(false)
+        binding.btnRegister
+            .setOnClickListener {
 
-                if (task.isSuccessful) {
-                    irAlCatalogo()
-                } else {
-                    mostrarError(
-                        getString(R.string.error_login)
+                startActivity(
+                    Intent(
+                        this,
+                        RegisterActivity::class.java
                     )
-                }
+                )
             }
     }
 
-    private fun irAlCatalogo() {
+    private fun iniciarSesion() {
+
+        binding.tvError.visibility =
+            View.GONE
+
+        val email =
+            binding.etEmail
+                .text
+                .toString()
+                .trim()
+
+        val password =
+            binding.etPassword
+                .text
+                .toString()
+
+        if (
+            email.isEmpty() ||
+            password.isEmpty()
+        ) {
+
+            binding.tvError.text =
+                getString(
+                    R.string.error_empty_fields
+                )
+
+            binding.tvError.visibility =
+                View.VISIBLE
+
+            return
+        }
+
+        binding.btnLogin.isEnabled =
+            false
+
+        auth.signInWithEmailAndPassword(
+            email,
+            password
+        )
+
+            .addOnSuccessListener {
+
+                abrirMain()
+            }
+
+            .addOnFailureListener { error ->
+
+                binding.btnLogin.isEnabled =
+                    true
+
+                binding.tvError.text =
+                    error.localizedMessage
+                        ?: "No se pudo iniciar sesión"
+
+                binding.tvError.visibility =
+                    View.VISIBLE
+            }
+    }
+
+    private fun abrirMain() {
 
         startActivity(
-            Intent(this, MainActivity::class.java)
+            Intent(
+                this,
+                MainActivity::class.java
+            )
         )
 
         finish()
-    }
-
-    private fun mostrarError(mensaje: String) {
-
-        binding.tvLoginError.text = mensaje
-        binding.tvLoginError.visibility = View.VISIBLE
-    }
-
-    private fun mostrarCargando(mostrando: Boolean) {
-
-        binding.progressLogin.visibility =
-            if (mostrando) View.VISIBLE else View.GONE
-
-        binding.btnLogin.isEnabled = !mostrando
     }
 }
