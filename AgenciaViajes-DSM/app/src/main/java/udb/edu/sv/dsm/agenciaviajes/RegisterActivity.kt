@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.view.View
+import android.content.Intent
 import com.google.firebase.auth.FirebaseAuth
 import udb.edu.sv.dsm.agenciaviajes.databinding.ActivityRegisterBinding
 
@@ -111,9 +112,7 @@ class RegisterActivity : AppCompatActivity() {
             .addOnSuccessListener {
 
                 startActivity(
-                    Intent(
-                        this,
-                        MainActivity::class.java
+                    Intent( this, MainActivity::class.java
                     )
                 )
 
