@@ -7,78 +7,139 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
-import com.udb.agenciaviajes.databinding.ActivityRegisterBinding
+import udb.edu.sv.dsm.agenciaviajes.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityRegisterBinding
-    private lateinit var auth: FirebaseAuth
+    private lateinit var binding:
+            ActivityRegisterBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private lateinit var auth:
+            FirebaseAuth
 
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
+    override fun onCreate(
+        savedInstanceState: Bundle?
+    ) {
+
+        super.onCreate(
+            savedInstanceState
+        )
+
+        binding =
+            ActivityRegisterBinding.inflate(
+                layoutInflater
+            )
+
         setContentView(binding.root)
 
-        auth = FirebaseAuth.getInstance()
+        auth =
+            FirebaseAuth.getInstance()
 
-        binding.btnRegister.setOnClickListener {
-            intentarRegistro()
-        }
+        binding.btnCreateAccount
+            .setOnClickListener {
 
-        binding.tvGoLogin.setOnClickListener {
-            finish()
-        }
+                registrarUsuario()
+            }
     }
 
-    private fun intentarRegistro() {
+    private fun registrarUsuario() {
+
+        binding.tvError.visibility =
+            View.GONE
 
         val email =
-            binding.etRegEmail.text.toString().trim()
+            binding.etEmail
+                .text
+                .toString()
+                .trim()
 
         val password =
-            binding.etRegPassword.text.toString().trim()
+            binding.etPassword
+                .text
+                .toString()
 
-        val confirm =
-            binding.etRegConfirmPassword.text.toString().trim()
+        val confirmPassword =
+            binding.etConfirmPassword
+                .text
+                .toString()
 
         if (
             email.isEmpty() ||
             password.isEmpty() ||
-            confirm.isEmpty()
+            confirmPassword.isEmpty()
         ) {
+
             mostrarError(
-                getString(R.string.error_empty_fields)
+                getString(
+                    R.string.error_empty_fields
+                )
             )
+
             return
         }
 
-        if (password != confirm) {
+        if (
+            password != confirmPassword
+        ) {
+
             mostrarError(
-                getString(R.string.error_password_match)
+                "Las contraseñas no coinciden"
             )
+
             return
         }
+
+        if (
+            password.length < 6
+        ) {
+
+            mostrarError(
+                "La contraseña debe tener al menos 6 caracteres"
+            )
+
+            return
+        }
+
+        binding.btnCreateAccount
+            .isEnabled = false
 
         auth.createUserWithEmailAndPassword(
             email,
             password
-        ).addOnCompleteListener { task ->
+        )
 
-            if (task.isSuccessful) {
+            .addOnSuccessListener {
+
+                startActivity(
+                    Intent(
+                        this,
+                        MainActivity::class.java
+                    )
+                )
+
                 finish()
-            } else {
+            }
+
+            .addOnFailureListener { error ->
+
+                binding.btnCreateAccount
+                    .isEnabled = true
+
                 mostrarError(
-                    task.exception?.localizedMessage
-                        ?: getString(R.string.error_login)
+                    error.localizedMessage
+                        ?: "No se pudo crear la cuenta"
                 )
             }
-        }
     }
 
-    private fun mostrarError(mensaje: String) {
+    private fun mostrarError(
+        mensaje: String
+    ) {
 
-        binding.tvRegisterError.text = mensaje
-        binding.tvRegisterError.visibility = View.VISIBLE
+        binding.tvError.text =
+            mensaje
+
+        binding.tvError.visibility =
+            View.VISIBLE
     }
 }
