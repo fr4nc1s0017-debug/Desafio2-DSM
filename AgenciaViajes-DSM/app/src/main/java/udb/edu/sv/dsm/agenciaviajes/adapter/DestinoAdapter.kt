@@ -1,12 +1,12 @@
-package udb.edu.sv.dsm.agenciaviajes
+package udb.edu.sv.dsm.agenciaviajes.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.udb.agenciaviajes.databinding.ItemDestinoBinding
-import com.udb.agenciaviajes.model.Destino
-import com.udb.agenciaviajes.utils.ImageUtils
+import udb.edu.sv.dsm.agenciaviajes.databinding.ItemDestinoBinding
+import udb.edu.sv.dsm.agenciaviajes.model.Destino
+import udb.edu.sv.dsm.agenciaviajes.utils.ImageUtils
 
 class DestinoAdapter(
     private var destinos: List<Destino>,
@@ -23,11 +23,12 @@ class DestinoAdapter(
         viewType: Int
     ): DestinoViewHolder {
 
-        val binding = ItemDestinoBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
+        val binding =
+            ItemDestinoBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
 
         return DestinoViewHolder(binding)
     }
@@ -41,12 +42,14 @@ class DestinoAdapter(
 
         with(holder.binding) {
 
-            tvNombre.text = destino.nombre
+            tvNombre.text =
+                destino.nombre
 
             tvPrecio.text =
                 "$${"%.2f".format(destino.precio)} · ${destino.pais}"
 
-            tvDescripcion.text = destino.descripcion
+            tvDescripcion.text =
+                destino.descripcion
 
             val bitmap =
                 ImageUtils.base64ToBitmap(
@@ -54,9 +57,14 @@ class DestinoAdapter(
                 )
 
             if (bitmap != null) {
+
                 Glide.with(ivDestino.context)
                     .load(bitmap)
                     .into(ivDestino)
+
+            } else {
+
+                ivDestino.setImageDrawable(null)
             }
 
             root.setOnClickListener {
@@ -69,13 +77,16 @@ class DestinoAdapter(
         }
     }
 
-    override fun getItemCount(): Int =
-        destinos.size
+    override fun getItemCount(): Int {
+        return destinos.size
+    }
 
     fun actualizarLista(
         nuevaLista: List<Destino>
     ) {
+
         destinos = nuevaLista
+
         notifyDataSetChanged()
     }
 }
