@@ -8,7 +8,6 @@
     <string name="btn_login">Ingresar</string>
     <string name="link_register">¿No tienes cuenta? Regístrate aquí</string>
 
-
     <!-- Registro -->
     <string name="register_title">Crear cuenta de agente</string>
     <string name="hint_confirm_password">Confirmar contraseña</string>
@@ -16,15 +15,41 @@
     <string name="link_back_login">Ya tengo cuenta, ingresar</string>
     <string name="error_password_match">Las contraseñas no coinciden</string>
 
-    <!-- xd -->
+    <!-- Catálogo -->
+    <string name="catalog_title">Destinos turísticos</string>
+    <string name="empty_list">No hay destinos registrados</string>
+    <string name="fab_add_desc">Agregar destino</string>
+    <string name="menu_logout">Cerrar sesión</string>
 
+    <!-- Formulario -->
+    <string name="form_title_new">Nuevo destino</string>
+    <string name="form_title_edit">Editar destino</string>
+    <string name="hint_nombre">Nombre del destino</string>
+    <string name="hint_precio">Precio</string>
+    <string name="hint_descripcion">Descripción</string>
+    <string name="btn_select_image">Seleccionar imagen</string>
+    <string name="btn_save">Guardar</string>
 
-    <!--  -->
-    <string name="error_empty_fields">
-    Completa todos los campos antes de guardar
-</string>
+    <!-- Eliminación -->
+    <string name="dialog_delete_title">Eliminar destino</string>
+    <string name="dialog_delete_message">¿Deseas eliminar el destino %1$s?</string>
+    <string name="btn_yes">Sí</string>
+    <string name="btn_cancel">Cancelar</string>
 
-    <string name="error_login">
-    Correo o contraseña incorrectos
-</string>
+    <!-- Errores -->
+    <string name="error_title">Error</string>
+    <string name="error_empty_fields">Completa todos los campos</string>
+    <string name="error_price">El precio debe ser un número mayor que 0</string>
+    <string name="error_description_length">La descripción debe tener al menos 20 caracteres</string>
+    <string name="error_image_required">Debes seleccionar una imagen</string>
+    <string name="error_image">No se pudo procesar la imagen</string>
+    <string name="error_not_authenticated">Debes iniciar sesión para realizar esta acción</string>
+    <string name="error_generate_id">No se pudo generar el identificador del destino</string>
+    <string name="error_save">No se pudo guardar el destino</string>
+    <string name="error_update">No se pudo actualizar el destino</string>
+    <string name="error_delete">No se pudo eliminar el destino</string>
+    <string name="error_load_destination">No se pudo cargar el destino</string>
+    <string name="error_destination_not_found">El destino no existe</string>
+    <string name="error_login">Correo o contraseña incorrectos</string>
+
 </resources>
