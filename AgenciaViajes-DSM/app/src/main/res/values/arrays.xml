@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="countries_array">
+        <item>El Salvador</item>
+        <item>Guatemala</item>
+        <item>Honduras</item>
+        <item>Nicaragua</item>
+        <item>Costa Rica</item>
+        <item>Panamá</item>
+        <item>México</item>
+        <item>Estados Unidos</item>
+        <item>Canadá</item>
+        <item>España</item>
+        <item>Francia</item>
+        <item>Italia</item>
+        <item>Japón</item>
+        <item>Brasil</item>
+        <item>Argentina</item>
+        <item>Colombia</item>
+    </string-array>
+</resources>
