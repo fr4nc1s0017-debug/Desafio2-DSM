@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">AgenciaViajes</string>
+    <string name="login_title">Bienvenido de nuevo</string>
+    <string name="hint_email">Correo electrónico</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="btn_login">Ingresar</string>
+    <string name="link_register">¿No tienes cuenta? Regístrate aquí</string>
+
+    <string name="error_empty_fields">
+    Completa todos los campos antes de guardar
+</string>
+
+    <string name="error_login">
+    Correo o contraseña incorrectos
+</string>
 </resources>
